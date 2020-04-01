@@ -4,7 +4,7 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  databse: 'bookstore_db',
+  database: 'bookstore_db',
 });
 
 connection.connect((err) => {
@@ -15,3 +15,5 @@ connection.connect((err) => {
 
   console.log('connected as id ' + connection.threadId);
 });
+
+module.exports = connection;
