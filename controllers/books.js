@@ -1,7 +1,8 @@
 const model = require('../models/books');
 
 const getBooksWithAuthors = (req, res) => {
-  model.readBooksWithAuthors()
+  model
+    .readBooksWithAuthors()
     .then((books) => {
       res.json({
         success: true,

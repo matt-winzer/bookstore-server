@@ -22,11 +22,11 @@ function reformatBooksWithAuthors(books) {
   books.forEach((book) => {
     const authorName = book.author_name;
     if (reformatted[book.id]) {
-      reformatted[book.id].authors.push(authorName);
+      reformatted[book.id].authors.push({ name: authorName });
     } else {
       reformatted[book.id] = book;
       delete reformatted[book.id].author_name;
-      reformatted[book.id].authors = [authorName];
+      reformatted[book.id].authors = [{ name: authorName }];
     }
   });
 
