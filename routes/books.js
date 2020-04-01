@@ -6,7 +6,8 @@ const allBooks = require('../mocks/books-mock.js');
 
 // GET all books route
 router.get('/', controller.getBooksWithAuthors);
-router.post('/cart', controller.addBookToCart);
+router.get('/cart/:userId', controller.getCartBooks);
+router.post('/cart/:userId', controller.addBookToCart);
 
 router.get('/:id', (req, res) => {
   const id = parseInt(req.params.id);

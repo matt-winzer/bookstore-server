@@ -19,15 +19,13 @@ const getBooksWithAuthors = (req, res) => {
 };
 
 const addBookToCart = (req, res) => {
-  const {
-    bookId,
-    userId,
-  } = req.body;
+  const { bookId } = req.body;
+  const { userId } = req.params;
 
   model.addBookToCart(bookId, userId)
     .then((data) => {
       res.status(201).json({
-        data,
+        success: true,
       });
     })
     .catch((err) => {
@@ -39,7 +37,26 @@ const addBookToCart = (req, res) => {
     });
 };
 
+const getCartBooks = (req, res) => {
+  const { userId } = req.params;
+
+  model.readCartBooks(userId)
+    .then((books) => {
+      res.json({
+        books,
+      });
+    })
+    .catch((err) =>{
+      console.error(err);
+      res.status(400).json({
+        success: false,
+        message: 'Could not retrieve cart books',
+      });
+    });
+};
+
 module.exports = {
   getBooksWithAuthors,
   addBookToCart,
+  getCartBooks,
 };
