@@ -15,7 +15,7 @@ const booksRoutes = require('./routes/books');
 // Test route
 app.get('/', (req, res, next) => {
   res.json({
-    message: 'Hey your server works!'
+    message: 'Hey your server works!',
   });
 });
 

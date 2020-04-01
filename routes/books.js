@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const db = require('../db')
+
 const allBooks = require('../mocks/books-mock.js');
 
 // GET all books route
