@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS bookstore_db;
-
-CREATE DATABASE bookstore_db;
-
-USE bookstore_db;
+DROP TABLE IF EXISTS book_author;
+DROP TABLE IF EXISTS user_book;
+DROP TABLE IF EXISTS book;
+DROP TABLE IF EXISTS author;
+DROP TABLE IF EXISTS user;
 
 CREATE TABLE book (
   id SERIAL,
@@ -24,9 +24,11 @@ CREATE TABLE book_author (
   book_id BIGINT UNSIGNED NOT NULL,
   author_id BIGINT UNSIGNED NOT NULL,
   CONSTRAINT FOREIGN KEY (book_id)
-    REFERENCES book(id),
+    REFERENCES book(id)
+    ON DELETE CASCADE,
   CONSTRAINT FOREIGN KEY (author_id)
     REFERENCES author(id)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE user (
@@ -41,9 +43,11 @@ CREATE TABLE user_book (
   book_id BIGINT UNSIGNED NOT NULL,
   user_id BIGINT UNSIGNED NOT NULL,
   CONSTRAINT FOREIGN KEY (book_id)
-    REFERENCES book(id),
+    REFERENCES book(id)
+    ON DELETE CASCADE,
   CONSTRAINT FOREIGN KEY (user_id)
     REFERENCES user(id)
+    ON DELETE CASCADE
 );
 
 -- seed data
@@ -60,12 +64,13 @@ VALUES
 ('Frank Herbert', 'I write real good books.'),
 ('Diane Jones', 'I write the best books.');
 
+-- ClearDB (being used for heroku deploy) auto increments by 10 for each record
 INSERT INTO book_author (book_id, author_id)
 VALUES
 (1, 1),
-(1, 2),
-(2, 2),
-(3, 3);
+(1, 11),
+(11, 11),
+(21, 21);
 
 INSERT INTO user (email)
 VALUES
