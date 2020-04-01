@@ -1,19 +1,25 @@
 const mysql = require('mysql');
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'bookstore_db',
-});
+let connection;
 
-connection.connect((err) => {
-  if (err) {
-    console.error('error connecting: ' + err.stack);
-    return;
-  }
+if (process.env.NODE_ENV === 'production') {
+  connection = mysql.createPool(process.env.CLEARDB_DATABASE_URL);
+} else {
+  connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'bookstore_db',
+  });
 
-  console.log('connected as id ' + connection.threadId);
-});
+  connection.connect((err) => {
+    if (err) {
+      console.error('error connecting: ' + err.stack);
+      return;
+    }
+
+    console.log('connected as id ' + connection.threadId);
+  });
+}
 
 module.exports = connection;
