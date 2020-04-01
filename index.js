@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 4000;
 // Middleware configuration
 app.use(morgan('dev'));
 app.use(cors());
+app.use(express.json());
 
 // Router imports
 const booksRoutes = require('./routes/books');

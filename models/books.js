@@ -14,6 +14,18 @@ const readBooksWithAuthors = () => {
   });
 };
 
+const addBookToCart = (bookId, userId) => {
+  const query = `INSERT INTO user_book (book_id, user_id)
+  VALUES (${bookId}, ${userId})`;
+
+  return new Promise((resolve, reject) => {
+    db.query(query, (err, results) => {
+      if (err) reject(err);
+      resolve(results);
+    });
+  });
+};
+
 // ---------- UTILITY FUNCTIONS ----------
 
 function reformatBooksWithAuthors(books) {
@@ -35,4 +47,5 @@ function reformatBooksWithAuthors(books) {
 
 module.exports = {
   readBooksWithAuthors,
+  addBookToCart,
 };
