@@ -4,11 +4,11 @@ const router = express.Router();
 const controller = require('../controllers/books');
 const allBooks = require('../mocks/books-mock.js');
 
-// GET all books route
 router.get('/', controller.getBooksWithAuthors);
 router.get('/cart/:userId', controller.getCartBooks);
 router.post('/cart/:userId', controller.addBookToCart);
 
+// Route below no longer being used
 router.get('/:id', (req, res) => {
   const id = parseInt(req.params.id);
 

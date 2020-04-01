@@ -14,7 +14,7 @@ app.use(express.json());
 const booksRoutes = require('./routes/books');
 
 // Test route
-app.get('/', (req, res, next) => {
+app.get('/', (req, res) => {
   res.json({
     message: 'Hey your server works!',
   });

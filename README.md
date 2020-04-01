@@ -1,23 +1,27 @@
-// Bookstore
+# Bookstore Application
 
-// Can tackle back-end or front-end
-// General functionality: user can browse & purchase books
-// Amazon V1 :)
+Basic book listing and shopping cart functionality.
 
-// no preference on tech
+## Required Tech
 
-// book
-pk id serial
-title text
+* Node
+* MySQL 5.7
 
-// book_author
-pk id serial
-fk book_id
-fk author_id
+## Getting Started
 
-// author
-pk id serial
-name text
-bio text
-
-
+* Install dependencies
+```
+$ npm install
+```
+* Run schema file to create and seed database
+```
+$ npm run schema
+```
+* Start application (dev)
+```
+npm run start:dev
+```
+* Start application (prod)
+```
+npm start
+```
